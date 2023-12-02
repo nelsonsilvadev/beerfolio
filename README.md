@@ -47,7 +47,7 @@ Beerfolio is built using Next.js and React, leveraging TypeScript for robust and
 
 ### Final Comment
 
-This small project has the potential to evolve into a large community platform, connecting beer enthusiasts worldwide, and transforming into a comprehensive ecosystem for sharing, learning and celebrating the diverse world of beers. Beautiful stuff.
+This small project has the potential to evolve into a large community platform, connecting beer enthusiasts worldwide, and transforming into a comprehensive ecosystem for sharing, learning and celebrating the diverse world of beers. _Beautiful stuff._
 
 ### Reminder
 
