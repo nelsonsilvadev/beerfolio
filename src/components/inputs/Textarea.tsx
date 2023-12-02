@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 
 interface ITextarea {
   label?: string
@@ -7,7 +7,7 @@ interface ITextarea {
   value?: string
   error?: string
   rows?: number
-  onChange: (e: React.ChangeEvent<HTMLTextAreaElement>) => void
+  onChange: (e: ChangeEvent<HTMLTextAreaElement>) => void
 }
 
 const Textarea: FC<ITextarea> = ({
@@ -22,13 +22,11 @@ const Textarea: FC<ITextarea> = ({
   return (
     <>
       {label && (
-        <label
-          htmlFor="TODO: camelCase label"
-          className="block mb-2 font-semibold text-gray-700"
-        >
+        <label className="block mb-2 font-semibold text-gray-700">
           {label}
         </label>
       )}
+
       <textarea
         name={name}
         className={`w-full p-4 rounded-lg shadow-sm focus:outline-none ${

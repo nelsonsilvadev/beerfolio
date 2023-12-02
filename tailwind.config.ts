@@ -8,6 +8,7 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Note: Just playing around with the colors, however, I went mostly with the default colors.
       colors: {
         primary: '#1a2b33',
         secondary: '#f8f9f2',

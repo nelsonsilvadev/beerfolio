@@ -6,7 +6,7 @@ import Layout from '@/components/Layout'
 import AddBeer from '@/components/sliders/AddBeer'
 import { useBeerContext } from '@/contexts/BeerContext'
 
-import React, { ChangeEvent, useEffect, useState } from 'react'
+import { ChangeEvent, useEffect, useState } from 'react'
 
 import Head from 'next/head'
 
@@ -45,6 +45,9 @@ export default function Home() {
       result = result.filter((beer) => beer.verified)
     }
 
+    // Note: This should probably be moved to a separate function and memoized.
+    // Memoizing it would prevent it from being called on every render.
+    // But, is it worth it? I'm not sure.
     switch (sortCriteria) {
       case 'Name A-Z':
         result.sort((a, b) => a.name.localeCompare(b.name))
@@ -114,6 +117,7 @@ export default function Home() {
     applyFilters()
   }
 
+  // Note: Just splitting the return into multiple components for readability.
   return (
     <>
       <Head>

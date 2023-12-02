@@ -1,5 +1,6 @@
 import { FC } from 'react'
 
+// Note: You can always name this interface something like IButtonProps (following what we have in App.tsx - AppProps).
 interface IButton {
   title: string
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void | Promise<void>

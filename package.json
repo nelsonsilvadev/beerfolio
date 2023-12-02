@@ -1,6 +1,6 @@
 {
   "name": "beerfolio",
-  "description": "Keep track of your favorite beers, for the real connoisseurs.",
+  "description": "An innovative and immersive web platform for discovering, rating and curating a personalized collection of beers.",
   "version": "1.0.0",
   "private": true,
   "scripts": {

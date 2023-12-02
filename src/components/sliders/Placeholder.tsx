@@ -8,17 +8,12 @@ interface IPlaceholder {
 
 const Placeholder: FC<IPlaceholder> = ({ url }) => (
   <div>
-    <label
-      htmlFor="TODO: camelCase label"
-      className="block mb-2 font-semibold text-gray-700"
-    >
-      Image
-    </label>
+    <label className="block mb-2 font-semibold text-gray-700">Image</label>
 
     <Image
       className="flex-shrink-0 h-32 w-32 rounded-lg object-scale-down mx-auto select-none"
       src={url}
-      alt="TODO: Random"
+      alt="Random Beer"
       width={128}
       height={128}
     />

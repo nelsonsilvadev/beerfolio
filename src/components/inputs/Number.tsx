@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 
 interface INumber {
   label?: string
@@ -18,18 +18,16 @@ const Number: FC<INumber> = ({
   value,
   allowDecimals,
   error,
-  className,
   onChange,
 }) => {
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     const inputValue = e.target.value
 
-    // Define the regular expression based on whether decimals are allowed
     const reg = allowDecimals ? /^\d*\.?\d*$/ : /^\d*$/
 
-    // Check if the input value is valid according to the regular expression
+    // Note: This is a bit of a hack to allow for a single decimal point and no leading zeros.
+    // It's not perfect, but it works for now.
     if (inputValue === '' || reg.test(inputValue)) {
-      // If the input value ends with a dot or is empty, keep it as a string; otherwise, parse as a float
       const parsedValue =
         inputValue.endsWith('.') || inputValue === ''
           ? inputValue
@@ -42,10 +40,7 @@ const Number: FC<INumber> = ({
   return (
     <div className="w-full">
       {label && (
-        <label
-          htmlFor={`id-${label.replace(/\s+/g, '').toLowerCase()}`}
-          className="block mb-2 font-semibold text-gray-700"
-        >
+        <label className="block mb-2 font-semibold text-gray-700">
           {label}
         </label>
       )}
@@ -53,7 +48,6 @@ const Number: FC<INumber> = ({
       <input
         type="text"
         name={name}
-        id={`id-${label?.replace(/\s+/g, '').toLowerCase()}`}
         className={`w-full p-4 rounded-lg shadow-sm focus:outline-none ${
           error
             ? 'border border-red-500 focus:border-red-500 focus:ring-red-500'

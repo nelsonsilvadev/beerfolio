@@ -1,7 +1,7 @@
 import { StarIcon as FilledStarIcon } from '@heroicons/react/20/solid'
 import { StarIcon as EmptyStarIcon } from '@heroicons/react/24/outline'
 
-import { MouseEvent, useState } from 'react'
+import { FC, MouseEvent, useState } from 'react'
 
 interface IRating {
   rating: number
@@ -9,7 +9,7 @@ interface IRating {
   readonly?: boolean
 }
 
-const Rating: React.FC<IRating> = ({ rating, setRating, readonly = false }) => {
+const Rating: FC<IRating> = ({ rating, setRating, readonly = false }) => {
   const [hoverRating, setHoverRating] = useState<number | null>(null)
 
   const handleMouseEnter = (value: number) => {

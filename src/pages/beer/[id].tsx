@@ -68,6 +68,7 @@ export default function BeerPage() {
   }
 
   if (!beer || isLoading) {
+    // Note: I would easily use the logo to create a loading spinner component instead of the text.
     return <Layout>Loading...</Layout>
   }
 
@@ -134,14 +135,16 @@ export default function BeerPage() {
                     <span className="ml-4 text-gray-600">
                       <span className="font-semibold text-gray-700">
                         Boil Volume:
-                      </span>
+                      </span>{' '}
                       {beer.boilVolume.value} {beer.boilVolume.unit}
                     </span>
                   </div>
+
                   <div>
                     <h3 className="font-semibold text-gray-700">
                       Brewers Tips
                     </h3>
+
                     <p className="text-gray-600">{beer.brewersTips}</p>
                   </div>
 

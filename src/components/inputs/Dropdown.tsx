@@ -29,10 +29,7 @@ const Dropdown: FC<IDropdown> = ({
       {({ open }) => (
         <div className={className}>
           {label && (
-            <label
-              htmlFor="TODO: camelCase label"
-              className="block mb-2 font-semibold text-gray-700"
-            >
+            <label className="block mb-2 font-semibold text-gray-700">
               {label}
             </label>
           )}

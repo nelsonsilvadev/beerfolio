@@ -26,6 +26,8 @@ export const BeerProvider: React.FC<{ children: React.ReactNode }> = ({
 
       if (storedBeers.length === 0) {
         try {
+          // Note: I'm using axios here because I'm more familiar with it.
+          // But, I think using fetch API would be better since it's already available in the browser.
           const response = await axios.get('https://api.punkapi.com/v2/beers')
           const transformedBeers = response.data.map((beer: IBeerResponse) => ({
             id: nanoid(16),
@@ -49,6 +51,9 @@ export const BeerProvider: React.FC<{ children: React.ReactNode }> = ({
           }))
 
           setBeers(transformedBeers)
+          // Note: Just choosed to store the beers in localStorage because it's easy to use.
+          // But, I think that using IndexedDB would be better since it's more powerful.
+          // I really want to learn more about it.
           localStorage.setItem('beers', JSON.stringify(transformedBeers))
         } catch (error) {
           console.error('Error fetching data:', error)

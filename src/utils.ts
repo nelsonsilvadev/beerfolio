@@ -1,3 +1,4 @@
+// Note: I really like structured and organized code, so I like to keep things in their own files.
 import { IVolume } from './types'
 
 export const volumeOptions = [

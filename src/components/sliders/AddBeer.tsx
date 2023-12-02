@@ -3,7 +3,15 @@ import { IBeerInputs, IBeerState, IFormErrors, ISlider } from '@/types'
 import { errorsState, validateField } from '@/utils'
 import { Dialog, Transition } from '@headlessui/react'
 
-import { FC, Fragment, useEffect, useState } from 'react'
+import {
+  ChangeEvent,
+  FC,
+  Fragment,
+  MouseEvent,
+  useCallback,
+  useEffect,
+  useState,
+} from 'react'
 
 import Actions from './Actions'
 import Fields from './Fields'
@@ -18,10 +26,13 @@ import _ from 'lodash'
 import { nanoid } from 'nanoid'
 
 const initialFormState = {
+  // Note: I'm using nanoid here to generate a unique ID for each beer.
   id: nanoid(16),
   name: '',
   tagline: '',
   description: '',
+  // Note: I choose this image as the default just because it's the first one that came to mind.
+  // I'm not sure if this is the best default image to use.
   imageUrl: 'https://images.punkapi.com/v2/222.png',
   abv: 0,
   ibu: 0,
@@ -39,10 +50,6 @@ const AddBeer: FC<ISlider> = ({ open, setOpen }) => {
   const [errors, setErrors] = useState(errorsState)
 
   useEffect(() => {
-    return () => debouncedValidation.cancel()
-  }, [])
-
-  useEffect(() => {
     if (open) resetForm()
   }, [open])
 
@@ -50,7 +57,9 @@ const AddBeer: FC<ISlider> = ({ open, setOpen }) => {
     setFormState({ ...initialFormState, id: nanoid(16) })
   }
 
-  const getRandomBeer = async (e: React.MouseEvent<HTMLButtonElement>) => {
+  // Note: Getting a random beer from the API just to use it a bit more.
+  // Also, this one is awesome to fill the whole form.
+  const getRandomBeer = async (e: MouseEvent<HTMLButtonElement>) => {
     e.preventDefault()
     try {
       const response = await axios.get(
@@ -84,6 +93,9 @@ const AddBeer: FC<ISlider> = ({ open, setOpen }) => {
   }
 
   const validateAllFields = (): boolean => {
+    // Note: This is a bit of a hack to avoid having to create a new interface for the errors.
+    // ChatGPT kinda helped me with some of this regarding TypeScript warnings.
+    // It was a crazy ride, but I'm glad I got it working.
     const newErrors = Object.keys(formState).reduce((acc: IFormErrors, key) => {
       if (
         typeof formState[key as keyof IBeerInputs] === 'string' ||
@@ -102,7 +114,7 @@ const AddBeer: FC<ISlider> = ({ open, setOpen }) => {
   }
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target
     updateBeerState(name, value)
@@ -127,13 +139,13 @@ const AddBeer: FC<ISlider> = ({ open, setOpen }) => {
 
   const handleVolumeUnitChange = (
     name: 'volume' | 'boilVolume',
-    option: { id: number; name: string }
+    value: { id: number; name: string }
   ) => {
     setFormState((prevState) => ({
       ...prevState,
       [name]: {
         ...prevState[name],
-        unit: option.name,
+        unit: value.name,
       },
     }))
   }
@@ -150,6 +162,9 @@ const AddBeer: FC<ISlider> = ({ open, setOpen }) => {
     setOpen(false)
   }
 
+  // Note: With some more time, I could try to join some handlers together.
+  // But in another hand, I think it's better to keep them separated for now.
+  // Speacilly for readability.
   const updateBeerState = (name: string, value: string | number) => {
     setFormState((prevState) => {
       if (prevState) {
@@ -165,10 +180,21 @@ const AddBeer: FC<ISlider> = ({ open, setOpen }) => {
     debouncedValidation(name, value)
   }
 
-  const debouncedValidation = _.debounce((name, value) => {
-    const error = validateField(name, value)
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: error }))
-  }, 400)
+  // Note: Debounce is being used here to avoid unnecessary API calls.
+  // I'm using useCallback here to avoid unnecessary re-renders.
+  // Re-renders since debounce is a function that is being created on every render.
+  const debouncedValidation = useCallback(
+    _.debounce((name, value) => {
+      const error = validateField(name, value)
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: error }))
+    }, 400),
+    []
+  )
+
+  // Note: This is to cancel the debounced function when the component unmounts.
+  useEffect(() => {
+    return () => debouncedValidation.cancel()
+  }, [debouncedValidation])
 
   return (
     <Transition.Root show={open} as={Fragment}>

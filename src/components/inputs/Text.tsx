@@ -1,4 +1,4 @@
-import React, { FC } from 'react'
+import { ChangeEvent, FC } from 'react'
 
 interface IText {
   label?: string
@@ -6,7 +6,7 @@ interface IText {
   placeholder?: string
   value?: string
   error?: string
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  onChange: (e: ChangeEvent<HTMLInputElement>) => void
 }
 
 const Text: FC<IText> = ({
@@ -20,10 +20,7 @@ const Text: FC<IText> = ({
   return (
     <div>
       {label && (
-        <label
-          htmlFor={name}
-          className="block mb-2 font-semibold text-gray-700"
-        >
+        <label className="block mb-2 font-semibold text-gray-700">
           {label}
         </label>
       )}

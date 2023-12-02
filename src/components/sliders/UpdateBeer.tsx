@@ -3,7 +3,7 @@ import { IBeer, IBeerInputs, IBeerState, IFormErrors, ISlider } from '@/types'
 import { errorsState, validateField } from '@/utils'
 import { Dialog, Transition } from '@headlessui/react'
 
-import { FC, Fragment, useEffect, useState } from 'react'
+import { FC, Fragment, useCallback, useEffect, useState } from 'react'
 
 import Actions from './Actions'
 import Fields from './Fields'
@@ -17,10 +17,6 @@ const UpdateBeer: FC<ISlider> = ({ beer, open, setOpen }) => {
   const { updateBeer } = useBeerContext()
   const [formState, setFormState] = useState<IBeer | undefined>(beer)
   const [errors, setErrors] = useState(errorsState)
-
-  useEffect(() => {
-    return () => debouncedValidation.cancel()
-  }, [])
 
   useEffect(() => {
     if (open) resetForm()
@@ -84,7 +80,7 @@ const UpdateBeer: FC<ISlider> = ({ beer, open, setOpen }) => {
 
   const handleVolumeUnitChange = (
     name: 'volume' | 'boilVolume',
-    option: { id: number; name: string }
+    value: { id: number; name: string }
   ) => {
     setFormState((prevState) => {
       if (!prevState) return prevState
@@ -93,7 +89,7 @@ const UpdateBeer: FC<ISlider> = ({ beer, open, setOpen }) => {
         ...prevState,
         [name]: {
           ...prevState[name],
-          unit: option.name,
+          unit: value.name,
         },
       }
     })
@@ -106,8 +102,6 @@ const UpdateBeer: FC<ISlider> = ({ beer, open, setOpen }) => {
       console.error('Form contains errors')
       return
     }
-
-    console.log(formState)
 
     updateBeer(formState as unknown as IBeer)
     setOpen(false)
@@ -128,10 +122,17 @@ const UpdateBeer: FC<ISlider> = ({ beer, open, setOpen }) => {
     debouncedValidation(name, value)
   }
 
-  const debouncedValidation = _.debounce((name, value) => {
-    const error = validateField(name, value)
-    setErrors((prevErrors) => ({ ...prevErrors, [name]: error }))
-  }, 400)
+  const debouncedValidation = useCallback(
+    _.debounce((name, value) => {
+      const error = validateField(name, value)
+      setErrors((prevErrors) => ({ ...prevErrors, [name]: error }))
+    }, 400),
+    []
+  )
+
+  useEffect(() => {
+    return () => debouncedValidation.cancel()
+  }, [debouncedValidation])
 
   return (
     <Transition.Root show={open} as={Fragment}>

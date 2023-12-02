@@ -1,3 +1,4 @@
+// Note: I mean, I know this is a small project, but I like to keep things organized.
 export interface IBeer {
   id: string
   name: string
