@@ -76,6 +76,7 @@ export default function BeerPage() {
     <>
       <Head>
         <title>{beer.name} - BeerFolio</title>
+        <meta name="robots" content="noindex,nofollow" />
       </Head>
 
       <Layout>
