@@ -9,7 +9,7 @@ import Actions from './Actions'
 import Fields from './Fields'
 import Header from './Header'
 import OptionalFields from './OptionalFields'
-import Placeholder from './PlaceHolder'
+import Placeholder from './Placeholder'
 
 import Button from '../Button'
 
