@@ -84,7 +84,7 @@ export default function BeerPage() {
             <div className="p-6 mt-3">
               <div className="flex space-y-3 flex-col">
                 <Image
-                  className="w-64 h-64 object-scale-down rounded-full mx-auto"
+                  className="w-64 h-64 object-scale-down rounded-full mx-auto select-none"
                   src={beer.imageUrl}
                   alt={beer.name}
                   width={256}

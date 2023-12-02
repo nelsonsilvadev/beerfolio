@@ -56,7 +56,7 @@ const BeerCard: FC<IBeerCard> = ({ beer }) => {
         <div className="p-4 flex flex-row items-center">
           <div>
             <Image
-              className="flex-shrink-0 h-32 w-32 rounded-lg object-scale-down"
+              className="flex-shrink-0 h-32 w-32 rounded-lg object-scale-down select-none"
               src={beer.imageUrl}
               alt={beer.name}
               width={128}

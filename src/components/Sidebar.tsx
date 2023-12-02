@@ -13,8 +13,9 @@ const Sidebar = () => {
                   <Link href="/">
                     <div className="flex items-center space-x-4">
                       <Image
+                        className="select-none"
                         src="/logo.png"
-                        alt="logo"
+                        alt="beerfolio - Logo"
                         width={100}
                         height={100}
                       />

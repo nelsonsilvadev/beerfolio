@@ -16,7 +16,7 @@ const Placeholder: FC<IPlaceholder> = ({ url }) => (
     </label>
 
     <Image
-      className="flex-shrink-0 h-32 w-32 rounded-lg object-scale-down mx-auto"
+      className="flex-shrink-0 h-32 w-32 rounded-lg object-scale-down mx-auto select-none"
       src={url}
       alt="TODO: Random"
       width={128}

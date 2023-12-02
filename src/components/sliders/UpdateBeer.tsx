@@ -12,7 +12,6 @@ import OptionalFields from './OptionalFields'
 import Placeholder from './Placeholder'
 
 import _ from 'lodash'
-import { nanoid } from 'nanoid'
 
 const UpdateBeer: FC<ISlider> = ({ beer, open, setOpen }) => {
   const { updateBeer } = useBeerContext()

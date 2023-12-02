@@ -1,5 +1,9 @@
 # beerfolio
 
+<img src="https://beerfolio.app/github.png" alt="beerfolio - Logo">
+
+An innovative and immersive web platform for discovering, rating and curating a personalized collection of beers.
+
 > There's a lot of notes within the source code, search for `Note:`
 
 ### How to Set Everything Up (assuming Node and Yarn/npm are installed)
