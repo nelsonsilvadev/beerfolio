@@ -196,7 +196,7 @@ const UpdateBeer: FC<ISlider> = ({ beer, open, setOpen }) => {
                       </div>
                     </div>
 
-                    <Actions setOpen={setOpen} label="Update Beer" />
+                    <Actions setOpen={setOpen} label="Update" />
                   </form>
                 </Dialog.Panel>
               </Transition.Child>

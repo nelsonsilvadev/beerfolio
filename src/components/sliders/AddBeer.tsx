@@ -260,7 +260,7 @@ const AddBeer: FC<ISlider> = ({ open, setOpen }) => {
                       </div>
                     </div>
 
-                    <Actions setOpen={setOpen} label="Add Beer" />
+                    <Actions setOpen={setOpen} label="Add" />
                   </form>
                 </Dialog.Panel>
               </Transition.Child>
