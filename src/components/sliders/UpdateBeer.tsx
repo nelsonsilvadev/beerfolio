@@ -29,7 +29,7 @@ const UpdateBeer: FC<ISlider> = ({ beer, open, setOpen }) => {
 
   const resetForm = () => {
     if (!beer) return
-    setFormState({ ...beer, id: nanoid(16) })
+    setFormState({ ...beer })
   }
 
   const validateAllFields = (): boolean => {
@@ -107,6 +107,8 @@ const UpdateBeer: FC<ISlider> = ({ beer, open, setOpen }) => {
       console.error('Form contains errors')
       return
     }
+
+    console.log(formState)
 
     updateBeer(formState as unknown as IBeer)
     setOpen(false)
