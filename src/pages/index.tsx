@@ -8,6 +8,8 @@ import { useBeerContext } from '@/contexts/BeerContext'
 
 import React, { ChangeEvent, useEffect, useState } from 'react'
 
+import Head from 'next/head'
+
 export default function Home() {
   const { beers } = useBeerContext()
   const [open, setOpen] = useState(false)
@@ -113,29 +115,35 @@ export default function Home() {
   }
 
   return (
-    <Layout>
-      <Button
-        className="w-full mb-6"
-        title="Add a New Brew to Your Portfolio"
-        onClick={() => setOpen(true)}
-      />
+    <>
+      <Head>
+        <title>BeerFolio</title>
+      </Head>
 
-      <Text
-        placeholder="Search for one of your beers..."
-        onChange={handleSearch}
-      />
+      <Layout>
+        <Button
+          className="w-full mb-6"
+          title="Add a New Brew to Your Portfolio"
+          onClick={() => setOpen(true)}
+        />
 
-      <FilterOptions
-        onABVChange={handleABVChange}
-        onIBUChange={handleIBUChange}
-        onSortChange={handleSortChange}
-        onToggleFavorites={handleToggleFavorites}
-        onClearFilters={handleClearFilters}
-        showFavorites={showFavorites}
-      />
+        <Text
+          placeholder="Search for one of your beers..."
+          onChange={handleSearch}
+        />
 
-      <BeerGrid beers={filteredBeers} />
-      <AddBeer open={open} setOpen={setOpen} />
-    </Layout>
+        <FilterOptions
+          onABVChange={handleABVChange}
+          onIBUChange={handleIBUChange}
+          onSortChange={handleSortChange}
+          onToggleFavorites={handleToggleFavorites}
+          onClearFilters={handleClearFilters}
+          showFavorites={showFavorites}
+        />
+
+        <BeerGrid beers={filteredBeers} />
+        <AddBeer open={open} setOpen={setOpen} />
+      </Layout>
+    </>
   )
 }

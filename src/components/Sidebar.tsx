@@ -15,18 +15,18 @@ const Sidebar = () => {
                       <Image
                         className="select-none"
                         src="/logo.png"
-                        alt="beerfolio - Logo"
+                        alt="BeerFolio - Logo"
                         width={100}
                         height={100}
                       />
 
-                      <h1 className="text-4xl font-bold">beerfolio</h1>
+                      <h1 className="text-4xl font-bold">BeerFolio</h1>
                     </div>
                   </Link>
                 </div>
 
                 <h1 className="mt-14 font-display text-4xl/tight font-light">
-                  Sip, savor, and story-tell with Beerfolio,{' '}
+                  Sip, savor, and story-tell with BeerFolio,{' '}
                   <span className="font-medium">your beer's portfolio!</span>
                 </h1>
 
@@ -50,7 +50,7 @@ const Sidebar = () => {
           <div className="flex flex-1 items-end justify-center pb-4 lg:justify-start lg:pb-6">
             <div className="flex flex-1 items-end justify-center pb-4 lg:justify-start lg:pb-6">
               <p className="flex items-baseline gap-x-2 text-[0.8125rem]/6 text-gray-500">
-                beerfolio &copy; {new Date().getFullYear()} All rights reserved.
+                BeerFolio &copy; {new Date().getFullYear()} All rights reserved.
               </p>
             </div>
           </div>

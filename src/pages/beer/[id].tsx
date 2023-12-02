@@ -9,6 +9,7 @@ import { ShieldCheckIcon, TrashIcon } from '@heroicons/react/24/outline'
 
 import React, { MouseEvent, useEffect, useState } from 'react'
 
+import Head from 'next/head'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
@@ -71,113 +72,123 @@ export default function BeerPage() {
   }
 
   return (
-    <Layout>
-      {beer && (
-        <>
-          <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
-            <Button
-              className="w-full mt-auto p-4 flex flex-row items-center justify-around rounded-b-none"
-              onClick={() => setOpen(true)}
-              title="Update Beer"
-            />
+    <>
+      <Head>
+        <title>{beer.name} - BeerFolio</title>
+      </Head>
 
-            <div className="p-6 mt-3">
-              <div className="flex space-y-3 flex-col">
-                <Image
-                  className="w-64 h-64 object-scale-down rounded-full mx-auto select-none"
-                  src={beer.imageUrl}
-                  alt={beer.name}
-                  width={256}
-                  height={256}
-                />
+      <Layout>
+        {beer && (
+          <>
+            <div className="flex flex-col bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300 ease-in-out">
+              <Button
+                className="w-full mt-auto p-4 flex flex-row items-center justify-around rounded-b-none"
+                onClick={() => setOpen(true)}
+                title="Update Beer"
+              />
 
-                <h1 className="text-3xl font-bold">{beer.name}</h1>
-                <p className="text-xl text-gray-600">{beer.tagline}</p>
-
-                <div className="-ml-1.5">
-                  <Rating
-                    rating={beer.rating}
-                    setRating={(e: MouseEvent, rating: number) =>
-                      handleRatingChange(e as MouseEvent, rating)
-                    }
+              <div className="p-6 mt-3">
+                <div className="flex space-y-3 flex-col">
+                  <Image
+                    className="w-64 h-64 object-scale-down rounded-full mx-auto select-none"
+                    src={beer.imageUrl}
+                    alt={beer.name}
+                    width={256}
+                    height={256}
                   />
-                </div>
 
-                <p className="text-gray-700">{beer.description}</p>
+                  <h1 className="text-3xl font-bold">{beer.name}</h1>
+                  <p className="text-xl text-gray-600">{beer.tagline}</p>
 
-                <div>
-                  <span className="text-gray-600">
-                    <span className="font-semibold text-gray-700">ABV:</span>{' '}
-                    {beer.abv}%
-                  </span>
+                  <div className="-ml-1.5">
+                    <Rating
+                      rating={beer.rating}
+                      setRating={(e: MouseEvent, rating: number) =>
+                        handleRatingChange(e as MouseEvent, rating)
+                      }
+                    />
+                  </div>
 
-                  <span className="ml-4 text-gray-600">
-                    <span className="font-semibold text-gray-700">IBU:</span>{' '}
-                    {beer.ibu}
-                  </span>
-                </div>
+                  <p className="text-gray-700">{beer.description}</p>
 
-                <div>
-                  <span className="text-gray-600">
-                    <span className="font-semibold text-gray-700">Volume:</span>{' '}
-                    {beer.volume.value} {beer.volume.unit}
-                  </span>
-
-                  <span className="ml-4 text-gray-600">
-                    <span className="font-semibold text-gray-700">
-                      Boil Volume:
+                  <div>
+                    <span className="text-gray-600">
+                      <span className="font-semibold text-gray-700">ABV:</span>{' '}
+                      {beer.abv}%
                     </span>
-                    {beer.boilVolume.value} {beer.boilVolume.unit}
-                  </span>
-                </div>
-                <div>
-                  <h3 className="font-semibold text-gray-700">Brewers Tips</h3>
-                  <p className="text-gray-600">{beer.brewersTips}</p>
-                </div>
 
-                <div>
-                  <h3 className="font-semibold text-gray-700">Notes</h3>
+                    <span className="ml-4 text-gray-600">
+                      <span className="font-semibold text-gray-700">IBU:</span>{' '}
+                      {beer.ibu}
+                    </span>
+                  </div>
 
-                  <p className="text-gray-600">
-                    {beer.notes.length === 0 ? 'No notes yet' : beer.notes}
-                  </p>
+                  <div>
+                    <span className="text-gray-600">
+                      <span className="font-semibold text-gray-700">
+                        Volume:
+                      </span>{' '}
+                      {beer.volume.value} {beer.volume.unit}
+                    </span>
+
+                    <span className="ml-4 text-gray-600">
+                      <span className="font-semibold text-gray-700">
+                        Boil Volume:
+                      </span>
+                      {beer.boilVolume.value} {beer.boilVolume.unit}
+                    </span>
+                  </div>
+                  <div>
+                    <h3 className="font-semibold text-gray-700">
+                      Brewers Tips
+                    </h3>
+                    <p className="text-gray-600">{beer.brewersTips}</p>
+                  </div>
+
+                  <div>
+                    <h3 className="font-semibold text-gray-700">Notes</h3>
+
+                    <p className="text-gray-600">
+                      {beer.notes.length === 0 ? 'No notes yet' : beer.notes}
+                    </p>
+                  </div>
                 </div>
+              </div>
+
+              <div className="mt-auto p-4 bg-gray-50 rounded-b-2xl flex flex-row items-center justify-around">
+                <button
+                  onClick={() => handleChange('verified')}
+                  aria-label="Toggle Verified"
+                  className="rounded-full p-2 hover:bg-green-100"
+                >
+                  {beer.verified ? (
+                    <SolidShieldCheckIcon
+                      className="h-6 w-6 text-green-500"
+                      title="Verified"
+                    />
+                  ) : (
+                    <ShieldCheckIcon
+                      className="h-6 w-6 text-gray-400"
+                      title="Verify"
+                    />
+                  )}
+                </button>
+
+                <button
+                  onClick={onRemove}
+                  aria-label="Remove"
+                  className="rounded-full p-2 hover:bg-red-100"
+                  title="Remove"
+                >
+                  <TrashIcon className="h-6 w-6 text-gray-400" />
+                </button>
               </div>
             </div>
 
-            <div className="mt-auto p-4 bg-gray-50 rounded-b-2xl flex flex-row items-center justify-around">
-              <button
-                onClick={() => handleChange('verified')}
-                aria-label="Toggle Verified"
-                className="rounded-full p-2 hover:bg-green-100"
-              >
-                {beer.verified ? (
-                  <SolidShieldCheckIcon
-                    className="h-6 w-6 text-green-500"
-                    title="Verified"
-                  />
-                ) : (
-                  <ShieldCheckIcon
-                    className="h-6 w-6 text-gray-400"
-                    title="Verify"
-                  />
-                )}
-              </button>
-
-              <button
-                onClick={onRemove}
-                aria-label="Remove"
-                className="rounded-full p-2 hover:bg-red-100"
-                title="Remove"
-              >
-                <TrashIcon className="h-6 w-6 text-gray-400" />
-              </button>
-            </div>
-          </div>
-
-          <UpdateBeer beer={beer} open={open} setOpen={setOpen} />
-        </>
-      )}
-    </Layout>
+            <UpdateBeer beer={beer} open={open} setOpen={setOpen} />
+          </>
+        )}
+      </Layout>
+    </>
   )
 }

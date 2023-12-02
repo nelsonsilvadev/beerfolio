@@ -1,6 +1,6 @@
-# beerfolio
+# BeerFolio
 
-<img src="https://beerfolio.app/github.png" alt="beerfolio - Logo">
+<img src="https://beerfolio.app/github.png" alt="BeerFolio - Logo">
 
 An innovative and immersive web platform for discovering, rating and curating a personalized collection of beers.
 

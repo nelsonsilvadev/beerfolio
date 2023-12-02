@@ -4,6 +4,37 @@ export default function Document() {
   return (
     <Html lang="en" className="h-full antialiased">
       <Head>
+        <meta
+          name="description"
+          content="An innovative and immersive web platform for discovering, rating and curating a personalized collection of beers."
+        />
+
+        <meta name="msapplication-TileColor" content="#f8f9f2" />
+        <meta name="theme-color" content="#f8f9f2" />
+
+        <link rel="manifest" href="/site.webmanifest" />
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#f8f9f2" />
+
+        <link
+          rel="apple-touch-icon"
+          sizes="180x180"
+          href="/apple-touch-icon.png"
+        />
+
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="32x32"
+          href="/favicon-32x32.png"
+        />
+
+        <link
+          rel="icon"
+          type="image/png"
+          sizes="16x16"
+          href="/favicon-16x16.png"
+        />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
 
         <link
